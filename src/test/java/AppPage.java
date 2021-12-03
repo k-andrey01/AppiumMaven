@@ -1,3 +1,4 @@
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.By;
@@ -23,10 +24,10 @@ public class AppPage {
         androidDriver.findElementByAccessibilityId("Folder Sent: 0 unread").click();
     }
     public void openMyMails(AndroidDriver androidDriver){
-        androidDriver.findElementByAccessibilityId("Folder Inbox: 6 unread").click();
+        androidDriver.findElementByAccessibilityId("Folder Inbox: 13 unread").click();
     }
     public void openTools(AndroidDriver androidDriver){
-        androidDriver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.ListView/android.widget.LinearLayout[15]").click();//tools
+        androidDriver.findElement(MobileBy.xpath("//android.widget.TextView[@text='Settings']")).click();//tools
     }
     public void swipeLeft(AndroidDriver androidDriver){
         //Thread.sleep(3000);
@@ -39,7 +40,8 @@ public class AppPage {
         (new TouchAction(androidDriver)).press(3,382).waitAction(1000).moveTo(1000,407).release().perform();
     }
     public void logOut(AndroidDriver androidDriver){
-        androidDriver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.ListView/android.widget.LinearLayout[17]").click();//log out
+        androidDriver.findElement(MobileBy.xpath("//android.widget.TextView[@text='Log out']")).click();//log out
+
     }
     public void allStepsLogOut(AndroidDriver androidDriver){
         swipeRight(androidDriver);

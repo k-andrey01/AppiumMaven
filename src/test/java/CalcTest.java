@@ -27,15 +27,19 @@ public class CalcTest {
         androidDriver = new AndroidDriver(new URL("http://localhost:4723/wd/hub"), capabilities);
         androidDriver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
     }
-
+//1007 123
     @Test
-    public void logIn(){
+    public void logIn() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         AppPage appPage = new AppPage();
-        loginPage.goMail(androidDriver);
-        appPage.allStepsLogOut(androidDriver);
+        if (androidDriver.findElementsById("ru.yandex.mail:id/go_to_mail_button").size()>0) {
+            loginPage.goMail(androidDriver);
+            appPage.allStepsLogOut(androidDriver);
 
-        loginPage.logIn(androidDriver);
+            loginPage.logIn(androidDriver);
+        }else if (androidDriver.findElementsById("ru.yandex.mail:id/list_yandex").size()>0){
+            loginPage.logIn2(androidDriver);
+        }
         Assert.assertTrue(androidDriver.findElementByXPath(ConfProperties.getProperty("InboxPath")).getText().equals("Inbox"));
     }
 
